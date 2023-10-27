@@ -1,5 +1,8 @@
 let playerSelection = prompt("Please enter rock paper or scissors.").toLowerCase();
 let computerSelection = getComputerChoice();
+if(playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissor") {
+    alert("Did not chose rock paper or scissors");
+}
 alert("Computer chooses " + (computerSelection) +"." + " Player chooses " + playerSelection + ".");
 alert(playRound(playerSelection, computerSelection));
 
@@ -25,4 +28,5 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "paper" && computerSelection === "rock")) {
         return "Player Wins";
     }
+    else return "Its a tie";
 }
