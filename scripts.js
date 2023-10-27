@@ -10,22 +10,22 @@ function getComputerChoice() {
         return "rock";
     }
     else if(randomNum == 2) {
-        return "scissor";
+        return "scissors";
     }
     else return "paper";
 }
 
 function playRound(playerSelection, computerSelection) {
-    if(playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissor") {
+    if(playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissors") {
         return("Did not chose rock paper or scissors");
     }
     if((playerSelection === "rock" && computerSelection === "paper") || 
-    (playerSelection === "paper" && computerSelection === "scissor") || 
-    (playerSelection === "scissor" && computerSelection === "rock")) {
+    (playerSelection === "paper" && computerSelection === "scissors") || 
+    (playerSelection === "scissors" && computerSelection === "rock")) {
         return "Computer Wins";
     }
-    else if((playerSelection === "rock" && computerSelection === "scissor") ||
-    (playerSelection === "scissor" && computerSelection === "paper") ||
+    else if((playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "rock")) {
         return "Player Wins";
     }
