@@ -1,7 +1,8 @@
-let playerSelection = prompt("Please enter rock paper or scissors.").toLowerCase();
-console.log(playerSelection)
-let computerSelection = getComputerChoice();
-alert(playRound(playerSelection, computerSelection));
+alert(playRound(getPlayerChoice(), getComputerChoice()));
+
+function getPlayerChoice() {
+    return prompt("Please enter rock paper or scissors.").toLowerCase();
+}
 
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1; //gives a random number between 1, 2, or 3
