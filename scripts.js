@@ -1,8 +1,33 @@
-alert(playRound(getPlayerChoice(), getComputerChoice()));
+let rockButton = document.getElementById("rock");
+let paperButton = document.getElementById("paper");
+let scissorsButton = document.getElementById("scissors");
+let gameText = document.getElementById("gameText")
+let roundText = document.getElementById("roundText")
+let scoreText = document.getElementById("scoreText")
+let displayWinner = document.getElementById("displayWinner")
+let playerScore = 0;
+let computerScore = 0;
 
-function getPlayerChoice() {
-    return prompt("Please enter rock paper or scissors.").toLowerCase();
-}
+rockButton.addEventListener("click", function() {
+    let playerSelection = "rock";
+    console.log(playRound(playerSelection, getComputerChoice()))
+})
+
+paperButton.addEventListener("click", function() {
+    let playerSelection = "paper";
+    console.log(playRound(playerSelection, getComputerChoice()))
+})
+
+scissorsButton.addEventListener("click", function() {
+    let playerSelection = "scissors";
+    console.log(playRound(playerSelection, getComputerChoice()))
+})
+
+//alert(playRound(getPlayerChoice(), getComputerChoice()));
+
+// function getPlayerChoice() {
+//     return prompt("Please enter rock paper or scissors.").toLowerCase();
+// }
 
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1; //gives a random number between 1, 2, or 3
@@ -17,19 +42,38 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    alert("Computer chooses " + (computerSelection) +"." + " Player chooses " + playerSelection + ".");
+    gameText.innerHTML = ("Player chooses " + playerSelection + "." + " " + "Computer chooses " + (computerSelection) +".");
     if((playerSelection === "rock" && computerSelection === "paper") || 
     (playerSelection === "paper" && computerSelection === "scissors") || 
     (playerSelection === "scissors" && computerSelection === "rock")) {
-        return "Computer Wins";
+        roundText.innerHTML = "Computer wins the round";
+        computerScore++;
     }
     else if((playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "scissors" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "rock")) {
-        return "Player Wins";
+        roundText.innerHTML = "Player Wins the round";
+        playerScore++;
     }
     else if(playerSelection === computerSelection) {
-        return "Its a tie";
+        roundText.innerHTML = "Its a tie";
     }
-    else return "Did not chose rock paper or scissors"
+    scoreText.innerHTML = "Player: " + playerScore + " " + "Computer: " + computerScore;
+    findWinner(playerScore, computerScore);
+
+}
+
+function findWinner(playerScore, computerScore) {
+    if(playerScore === 5) {
+        displayWinner.innerHTML = "Player wins the game!"
+        rockButton.disabled = true;
+        paperButton.disabled = true;
+        scissorsButton.disabled = true;
+    }
+    else if(computerScore === 5) {
+        displayWinner.innerHTML = "Computer wins the game!"
+        rockButton.disabled = true;
+        paperButton.disabled = true;
+        scissorsButton.disabled = true;
+    }
 }
