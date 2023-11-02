@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 20px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 20px;
+}
+
+button {
+    height: 32px;
+    width: 100px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+#fire {
+    background-color: rgb(227, 95, 43);
+}
+
+#water {
+    background-color: aqua;
+}
+
+#grass {
+    background-color: rgb(84, 189, 27);
+}

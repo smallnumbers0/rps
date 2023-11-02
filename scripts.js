@@ -1,58 +1,78 @@
-let rockButton = document.getElementById("rock");
-let paperButton = document.getElementById("paper");
-let scissorsButton = document.getElementById("scissors");
+/*****************************************************/
+/******************** Variables **********************/
+/*****************************************************/
+let fireButton = document.getElementById("fire");
+let waterButton = document.getElementById("water");
+let grassButton = document.getElementById("grass");
+let resetButton = document.getElementById("reset");
 let gameText = document.getElementById("gameText")
 let roundText = document.getElementById("roundText")
 let scoreText = document.getElementById("scoreText")
 let displayWinner = document.getElementById("displayWinner")
 let playerScore = 0;
 let computerScore = 0;
+/*****************************************************/
 
-rockButton.addEventListener("click", function() {
-    let playerSelection = "rock";
-    console.log(playRound(playerSelection, getComputerChoice()))
+
+/*****************************************************/
+/************** Button Functions *********************/
+/*****************************************************/
+fireButton.addEventListener("click", function() {
+    playerSelection = "fire";
+    playRound(playerSelection, getComputerChoice())
 })
 
-paperButton.addEventListener("click", function() {
-    let playerSelection = "paper";
-    console.log(playRound(playerSelection, getComputerChoice()))
+waterButton.addEventListener("click", function() {
+    playerSelection = "water";
+    playRound(playerSelection, getComputerChoice())
 })
 
-scissorsButton.addEventListener("click", function() {
-    let playerSelection = "scissors";
-    console.log(playRound(playerSelection, getComputerChoice()))
+grassButton.addEventListener("click", function() {
+    playerSelection = "grass";
+    playRound(playerSelection, getComputerChoice())
 })
 
-//alert(playRound(getPlayerChoice(), getComputerChoice()));
+resetButton.addEventListener("click", function() {
+    playerScore = 0;
+    computerScore = 0;
+    fireButton.disabled = false;
+    waterButton.disabled = false;
+    grassButton.disabled = false;
+    gameText.innerHTML = ""
+    roundText.innerHTML = ""
+    scoreText.innerHTML = ""
+    displayWinner.innerHTML = ""
+})
+/*****************************************************/
 
-// function getPlayerChoice() {
-//     return prompt("Please enter rock paper or scissors.").toLowerCase();
-// }
 
+/*****************************************************/
+/******************* All Functions *******************/
+/*****************************************************/
 function getComputerChoice() {
-    let randomNum = Math.floor(Math.random() * 3) + 1; //gives a random number between 1, 2, or 3
+    let randomNum = Math.floor(Math.random() * 3) + 1; 
     if(randomNum == 3) {
-        return "rock";
+        return "fire";
     }
     else if(randomNum == 2) {
-        return "scissors";
+        return "grass";
     }
-    else return "paper";
+    else return "water";
 }
 
 function playRound(playerSelection, computerSelection) {
 
     gameText.innerHTML = ("Player chooses " + playerSelection + "." + " " + "Computer chooses " + (computerSelection) +".");
-    if((playerSelection === "rock" && computerSelection === "paper") || 
-    (playerSelection === "paper" && computerSelection === "scissors") || 
-    (playerSelection === "scissors" && computerSelection === "rock")) {
+    if((playerSelection === "fire" && computerSelection === "water") || 
+    (playerSelection === "water" && computerSelection === "grass") || 
+    (playerSelection === "grass" && computerSelection === "fire")) {
         roundText.innerHTML = "Computer wins the round";
         computerScore++;
     }
-    else if((playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "scissors" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "rock")) {
-        roundText.innerHTML = "Player Wins the round";
+    else if((playerSelection === "fire" && computerSelection === "grass") ||
+    (playerSelection === "grass" && computerSelection === "water") ||
+    (playerSelection === "water" && computerSelection === "fire")) {
+        roundText.innerHTML = "Player wins the round";
         playerScore++;
     }
     else if(playerSelection === computerSelection) {
@@ -66,14 +86,14 @@ function playRound(playerSelection, computerSelection) {
 function findWinner(playerScore, computerScore) {
     if(playerScore === 5) {
         displayWinner.innerHTML = "Player wins the game!"
-        rockButton.disabled = true;
-        paperButton.disabled = true;
-        scissorsButton.disabled = true;
+        fireButton.disabled = true;
+        waterButton.disabled = true;
+        grassButton.disabled = true;
     }
     else if(computerScore === 5) {
         displayWinner.innerHTML = "Computer wins the game!"
-        rockButton.disabled = true;
-        paperButton.disabled = true;
-        scissorsButton.disabled = true;
+        fireButton.disabled = true;
+        waterButton.disabled = true;
+        grassButton.disabled = true;
     }
 }
